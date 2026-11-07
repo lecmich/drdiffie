@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@import "@fontsource-variable/anybody/standard.css";
+@import "@fontsource-variable/caveat/index.css";
+@import "@fontsource/atkinson-hyperlegible/latin-400.css";
+@import "@fontsource/atkinson-hyperlegible/latin-700.css";
+
+@theme {
+  --color-fliese: #bfe0d3;
+  --color-fliese-fuge: #a7d0c0;
+  --color-fell: #23150e;
+  --color-fell-hell: #3b2518;
+  --color-lohfarben: #d98a45;
+  --color-senf: #eeb92c;
+  --color-papier: #fffaf6;
+  --color-tinte: #17206b;
+  --color-rezept: #f4bfca;
+  --color-rezept-linie: #8c1f43;
+  --color-stempel: #1d3fa8;
+
+  --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-schild: "Anybody Variable", "Arial Black", sans-serif;
+  --font-hand: "Caveat Variable", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--color-fell);
+  color: var(--color-fell);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* Praxisfliesen, siebziger Jahre, nie renoviert. */
+.fliesen {
+  background-color: var(--color-fliese);
+  background-image:
+    linear-gradient(var(--color-fliese-fuge) 2px, transparent 2px),
+    linear-gradient(90deg, var(--color-fliese-fuge) 2px, transparent 2px);
+  background-size: 72px 72px;
+}
+
+/* Der Schriftzug wächst beim Laden in die Länge, wie ein Dackel. */
+.dackelschrift {
+  font-family: var(--font-schild);
+  font-weight: 900;
+  font-stretch: 150%;
+  font-size: 12.1vw;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  animation: dackel-waechst 1.5s cubic-bezier(0.3, 0.9, 0.3, 1) 0.15s backwards;
+}
+
+@keyframes dackel-waechst {
+  from {
+    font-stretch: 50%;
+  }
+}
+
+/* Passt auch beim längsten Wort, Gebührenordnung, auf ein schmales Handy. */
+.abschnitt-titel {
+  font-family: var(--font-schild);
+  font-weight: 800;
+  font-stretch: 120%;
+  font-size: clamp(1.6rem, 7vw, 3.75rem);
+  line-height: 1;
+}
+
+/* Gravierte Schrauben am Praxisschild. */
+.schraube {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d9d3cc, #7d746c);
+}
+
+.schraube::after {
+  content: "";
+  position: absolute;
+  inset: 45% 12%;
+  background: #3b352f;
+  transform: rotate(35deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dackelschrift {
+    animation: none;
+  }
+}
